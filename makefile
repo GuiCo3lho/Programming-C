@@ -1,26 +1,5 @@
-IDIR =../include
-CC=g++
-CFLAGS=-I$(IDIR)
+CC=gcc
+CFLAGS = -I.
 
-ODIR=obj
-LDIR =../lib
-
-LIBS=-lm
-
-_DEPS = arvore.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
-
-_OBJ = arvore.o testa_arvore.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
-
-
-$(ODIR)/%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
-
-arvore: $(OBJ)
-	g++ -o $@ $^ $(CFLAGS) $(LIBS)
-
-.PHONY: clean
-
-clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+make: trabalho2.o t2funcoes.o btree.o
+	$(CC) -o trabalho2 trabalho2.o t2funcoes.o btree.o -I.
